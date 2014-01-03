@@ -71,10 +71,21 @@ public class ServiceFactory {
         Object object = Proxy.newProxyInstance(serviceInterface.getClassLoader(),
                 new Class<?>[]{serviceInterface}, proxyInvokeHandler);
 
-        if (null == object)
-            throw new RuntimeException("Error in creating proxy instance.");
+        // variable object may not be null.
+        //if (null == object)
+        //    throw new RuntimeException("Error in creating proxy instance.");
 
         return serviceInterface.cast(object);
+    }
+
+    /**
+     *
+     * @param interfaceName
+     * @return
+     * @throws Exception
+     */
+    public static Object getService(String interfaceName) throws Exception{
+        return getService(Class.forName(interfaceName));
     }
 
     /**

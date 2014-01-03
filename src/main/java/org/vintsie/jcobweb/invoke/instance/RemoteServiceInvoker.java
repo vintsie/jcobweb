@@ -49,6 +49,7 @@ public class RemoteServiceInvoker extends IServiceInvoker {
     public Object instanceServiceObject(String className) throws Exception {
 
         // local rmi server
+        // TODO rmi server address should support configuration
         Registry registry = LocateRegistry.getRegistry("10.11.16.60", 9090);
         IServiceStub remoteStub = (IServiceStub)registry.lookup(IServiceStub.class.getName());
 
