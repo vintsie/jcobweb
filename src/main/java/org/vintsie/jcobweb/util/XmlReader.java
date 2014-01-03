@@ -40,4 +40,22 @@ public class XmlReader extends FileReader {
         return readFile(uri, encoding).replaceAll("(?<=>)\\s+(?=<)", "");
     }
 
+    /**
+     * <p>Read contents of a xml file packaged in Jar. {@link java.io.IOException}
+     * will be thrown out while error occurred in file reading.</p>
+     *
+     * <p>
+     *     Param <code>contextPath</code> means the relative path. For Example,
+     *     reading jcobweb.xml, which is placed in the root directory of the
+     *     jar file, the contextPath parameter should be "/jcobweb.xml".
+     *
+     * </p>
+     * @param contextPath
+     * @return
+     * @throws IOException
+     */
+    public static String readJarXmlFile(String contextPath) throws IOException{
+        return readJarTextFile(contextPath).replace("(?<=>)\\s+(?=<)", "");
+    }
+
 }

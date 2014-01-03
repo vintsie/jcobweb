@@ -17,11 +17,15 @@
 
 package org.vintsie.jcobweb.util;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import java.io.*;
 import java.net.URI;
 
 /**
- * 文件读取工具虚类，提供文件读取最原始的操作。
+ * <p>Read the original content of the file, without any extra operations,
+ * such as trimming the blank content.</p>
  *
  * User: dev001
  * Date: 12/24/13
@@ -29,10 +33,11 @@ import java.net.URI;
  */
 public abstract class FileReader {
 
+    private transient static Log log = LogFactory.getLog(FileReader.class);
 
     /**
-     * 读取文件的原始内容，不做任务处理。如果文件在读取过程中出现
-     * 读取错误会抛出IOException。
+     * Get the original content of
+     *
      *
      * @param uri       file location
      * @param encoding  file encoding
@@ -50,6 +55,46 @@ public abstract class FileReader {
             sb.append(tmp);
         }
         br.close();
+        return sb.toString();
+    }
+
+    /**
+     * <p>
+     * Read contents of a text file packaged in Jar. {@link java.io.IOException}
+     * will be thrown out while error occurred in file reading.</p>
+     *
+     * <p>
+     *     Param <code>contextPath</code> means the relative path. For Example,
+     *     reading jcobweb.xml, which is placed in the root directory of the
+     *     jar file, the contextPath parameter should be "/jcobweb.xml".
+     *
+     * </p>
+     *
+     * @param contextPath context path of file
+     * @return the content of file.
+     * @throws IOException
+     */
+    public static String readJarTextFile(String contextPath) throws IOException {
+
+        InputStream is = FileReader.class.getResourceAsStream(contextPath);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+        StringBuilder sb = new StringBuilder();
+        String s;
+        try {
+            while ((s = br.readLine()) != null) {
+                sb.append(s);
+            }
+        } catch (IOException ioe) {
+            log.error("Failed in reading file " + contextPath, ioe);
+            throw ioe;
+        }
+        try{
+            br.close();
+            is.close();
+        } catch (IOException ioe){
+            log.error("Failed in closing the InputStream after reading.", ioe);
+        }
         return sb.toString();
     }
 
