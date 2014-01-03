@@ -97,10 +97,8 @@ public class ServiceFactory {
 
     static {
         try {
-            URL fileLoc = ServiceFactory.class.getResource("/system.xml");
-            String systemInfo =
-                    XmlReader.readXmlFile(fileLoc.toURI(), SystemUtils.FILE_ENCODING);
-
+            //URL fileLoc = ServiceFactory.class.getResource("/jcobweb.xml");
+            String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml");
             Document doc = DocumentHelper.parseText(systemInfo);
             Node invoker = doc.selectSingleNode("/system/service/invoker");
 

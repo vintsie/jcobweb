@@ -26,17 +26,8 @@ public class TestServiceFactory {
     @Test
     public void testServiceFactory() throws Exception{
         CommonSV commonSV = ServiceFactory.getService(CommonSV.class);
-         //int i = 0;
-
-        // while(i < 2){
-        //
-        //    if (log.isInfoEnabled()){
         log.info(commonSV.getCurrentDateTime());
         log.info(commonSV.sayHelloToWorld("Vin Tsie", 5));
-        //    }
-        //    Thread.sleep(500);
-        //    i++;
-        // }
     }
 
     @Test
