@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.vintsie.jcobweb.framework;
 
 import org.apache.commons.logging.Log;
@@ -18,36 +35,33 @@ public class RmiFrameWork {
 
     private transient static Log log = LogFactory.getLog(RmiFrameWork.class);
 
+
+    /**
+     * <p>
+     * Server can be started by running this main function. The
+     * Rmi Server's port is reset to 9090, instead of the default
+     * value 1099.</p>
+     *
+     * <p>The Rmi Server Port should be set by the configuration
+     * file. This is the continuing work rest.</p>
+     *
+     *
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception{
 
-        //System.setSecurityManager(new RMISecurityManager());
-
-        //Registry registry = LocateRegistry.getRegistry("192.168.223.134", 9090);
-        //if(null == registry){
-        //   registry = LocateRegistry.createRegistry(9090);
-        //}
-        //if(null == registry.list() || registry.list().length < 1){
-        //ClassLoader.getSystemClassLoader().loadClass()
-
-        //load service factory
         if(log.isInfoEnabled()){
             log.info("Set System Service Invoke Factory:" +
                     ServiceFactory.getServiceInvoke().getClass().getName());
             log.info("Set System Service Invoke Type:" + ServiceFactory.getServiceInvokeType());
         }
-        //ServiceFactory.getServiceInvokeType();
         Registry registry = LocateRegistry.createRegistry(9090);
-        //AbtractServiceStub ss = (AbtractServiceStub) UnicastRemoteObject.exportObject(new RmiServiceStub(), 0);
-        //registry.
         registry.rebind(IServiceStub.class.getName(), new RmiServiceStub());
         if(log.isInfoEnabled()){
             log.info("RMI server is ready.");
         }
-        //log.info(registry.list());
 
-       // Registry registry1 = LocateRegistry.getRegistry(java.net.InetAddress.getLocalHost().getHostAddress(), 9090);
-        //log.info(registry1.list().length);
-       // }
     }
 
 }
