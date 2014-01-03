@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<system>
-    <service>
-        <!-- object instance type. local/remote -->
-        <!--<invoker>org.vintsie.jcobweb.invoke.instance.LocalServiceInvoker</invoker>-->
-        <invoker>org.vintsie.jcobweb.invoke.instance.RemoteServiceInvoker</invoker>
-    </service>
-
-</system>
