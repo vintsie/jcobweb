@@ -50,10 +50,13 @@ public class InvokeUtil {
     }
 
     /**
-     * 获取一个Object数据每个对象的对象类型，返回一个字符串，用
-     * 逗号分隔。
+     * Get object type of an object array. This method is deprecated.
+     * In my case, this method can be replaced by {@code Arrays.toString(Object[] args)}
+     * , the args is an array of the object types.
+     *
      * @param args Object[]
      * @return arg1Type, arg2Type...
+     * @deprecated this method can be replaced by {@code Arrays.toString(Object[] args)}
      */
     public static String getMethodParamsTypes(Object[] args){
         if(null == args || args.length < 1)
