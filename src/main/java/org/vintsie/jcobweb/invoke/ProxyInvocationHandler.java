@@ -19,6 +19,7 @@ package org.vintsie.jcobweb.invoke;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.vintsie.jcobweb.config.I18nFactory;
 import org.vintsie.jcobweb.invoke.instance.IServiceInvoker;
 import org.vintsie.jcobweb.invoke.stub.IServiceStub;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
@@ -53,14 +54,12 @@ public class ProxyInvocationHandler implements InvocationHandler {
         }
 
         Object rtn = null;
-        StringBuilder logInfo = new StringBuilder();
 
         if (IServiceInvoker.callType_Local.equals(ServiceFactory.getServiceInvokeType())) {
             if (log.isDebugEnabled()) {
-                logInfo.append("Method: ").append(method.getName()).append(", ParameterTypes: ")
-                        .append(Arrays.toString(method.getParameterTypes()))
-                        .append(", is starting to invoke on ").append(this.iClass.getName());
-                log.debug(logInfo.toString());
+                log.debug(I18nFactory.getI18nInfo("invoke_information", method.getName(),
+                                Arrays.toString(method.getParameterTypes()),
+                                this.iClass.getName()));
             }
             rtn = method.invoke(this.instance, args);
         }
@@ -69,6 +68,7 @@ public class ProxyInvocationHandler implements InvocationHandler {
             rtn = remoteInstance.remoteInvoke(
                     this.iClass.getName(), method.getName(), method.getParameterTypes(), args);
         }
+
         return rtn;
     }
 }
