@@ -74,10 +74,10 @@ public abstract class FileReader {
      * @return the content of file.
      * @throws IOException
      */
-    public static String readJarTextFile(String contextPath) throws IOException {
+    public static String readJarTextFile(String contextPath, String charsetName) throws IOException {
 
         InputStream is = FileReader.class.getResourceAsStream(contextPath);
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, charsetName));
 
         StringBuilder sb = new StringBuilder();
         String s;

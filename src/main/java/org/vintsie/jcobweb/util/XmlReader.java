@@ -50,12 +50,13 @@ public class XmlReader extends FileReader {
      *     jar file, the contextPath parameter should be "/jcobweb.xml".
      *
      * </p>
-     * @param contextPath
-     * @return
+     * @param contextPath   the file context path
+     * @param charsetName   charset encoding
+     * @return  the file content
      * @throws IOException
      */
-    public static String readJarXmlFile(String contextPath) throws IOException{
-        return readJarTextFile(contextPath).replace("(?<=>)\\s+(?=<)", "");
+    public static String readJarXmlFile(String contextPath, String charsetName) throws IOException{
+        return readJarTextFile(contextPath, charsetName).replace("(?<=>)\\s+(?=<)", "");
     }
 
 }

@@ -28,7 +28,7 @@ import java.rmi.server.UnicastRemoteObject;
  * Time: 2:38 PM
  */
 public abstract class AbtractServiceStub extends UnicastRemoteObject implements IServiceStub {
-    protected static String REST_out_empty = "";
+    //public static String REST_out_empty = "";
 
     /**
      * Handle RemoteException when service stub is constructed.
@@ -56,7 +56,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
         if(StringUtils.equals(REST_type, "json")){
             return remoteInvokeJsonRestfully(REST_in);
         }
-        return  REST_out_empty;
+        return  StringUtils.EMPTY;
     }
 
     /**
@@ -68,7 +68,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      * @throws java.rmi.RemoteException
      */
     public String remoteInvokeXmlRestfully(String xml) throws RemoteException{
-        return REST_out_empty;
+        return StringUtils.EMPTY;
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      * @throws java.rmi.RemoteException
      */
     public String remoteInvokeJsonRestfully(String jsonStr) throws RemoteException{
-        return REST_out_empty;
+        return StringUtils.EMPTY;
     }
 
 }
