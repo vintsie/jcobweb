@@ -14,24 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.proxy;
 
-import org.apache.commons.lang3.CharEncoding;
-import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Node;
+import org.vintsie.jcobweb.config.I18nFactory;
+import org.vintsie.jcobweb.config.SystemInfo;
 import org.vintsie.jcobweb.invoke.InvokeUtil;
 import org.vintsie.jcobweb.invoke.ProxyInvocationHandler;
 import org.vintsie.jcobweb.invoke.instance.IServiceInvoker;
 import org.vintsie.jcobweb.invoke.instance.LocalServiceInvoker;
-import org.vintsie.jcobweb.util.XmlReader;
 
 import java.lang.reflect.Proxy;
-import java.net.URL;
 
 /**
  * Created with IntelliJ IDEA.
@@ -72,17 +66,14 @@ public class ServiceFactory {
         Object object = Proxy.newProxyInstance(serviceInterface.getClassLoader(),
                 new Class<?>[]{serviceInterface}, proxyInvokeHandler);
 
-        // variable object may not be null.
-        //if (null == object)
-        //    throw new RuntimeException("Error in creating proxy instance.");
-
         return serviceInterface.cast(object);
     }
 
     /**
+     * Instance Service
      *
-     * @param interfaceName
-     * @return
+     * @param interfaceName interface class name
+     * @return  return the service instance
      * @throws Exception
      */
     public static Object getService(String interfaceName) throws Exception{
@@ -99,7 +90,8 @@ public class ServiceFactory {
     }
 
     /**
-     * 直接返回服务调用方式
+     * return the call type of invoker
+     *
      * @return  call type of service invoker
      * @throws Exception
      */
@@ -109,21 +101,12 @@ public class ServiceFactory {
 
     static {
         try {
-            //URL fileLoc = ServiceFactory.class.getResource("/jcobweb.xml");
-            String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml", CharEncoding.UTF_8);
-            Document doc = DocumentHelper.parseText(systemInfo);
-            Node invoker = doc.selectSingleNode("/system/service/invoker");
-
-            if (null == invoker) {
-                throw new RuntimeException("Failed in parsing system configuration file.");
-            }
-
-            Class invokerClazz = Class.forName(invoker.getText());
+            // initialize service invoker
+            Class invokerClazz = Class.forName(SystemInfo.getSrvInvoker());
             I_SERVICE_INVOKE = (IServiceInvoker) invokerClazz.newInstance();
 
         } catch (Exception e) {
-            log.error("Failed in reading system configuration file, " +
-                    "service invoker will work on local mode.", e);
+            log.error(I18nFactory.getI18nInfo("failed_in_reading_jcobweb_file"), e);
             I_SERVICE_INVOKE = new LocalServiceInvoker();
         }
 

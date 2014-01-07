@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.config;
 
 import org.apache.commons.lang3.CharEncoding;
@@ -31,16 +30,17 @@ import java.util.HashMap;
 
 /**
  * Initialize system information while process starts.
- *
+ * <p/>
  * Created by dev001 on 1/4/14.
  */
-public class SystemInfo{
+public class SystemInfo {
 
 
     /**
      * Constructor's invoke is banned.
      */
-    private SystemInfo(){}
+    private SystemInfo() {
+    }
 
     private transient static Log log = LogFactory.getLog(SystemInfo.class);
     /**
@@ -49,49 +49,76 @@ public class SystemInfo{
     private final static HashMap<String, Object> props = new HashMap<String, Object>();
 
     /**
-     *  Service Invoker which is configured in /jcobweb.xml file
-     *  and must extend from
-     *  {@link org.vintsie.jcobweb.invoke.instance.IServiceInvoker}
+     * System language environment mark.
+     */
+    private static String language = "";
+
+    /**
+     * Service Invoker which is configured in /jcobweb.xml file
+     * and must extend from
+     * {@link org.vintsie.jcobweb.invoke.instance.IServiceInvoker}
      */
     private static String srvInvoker = "";
 
     /**
      * Get property from the extra property container.
      *
-     * @param key   the key referenced to the property
-     * @return  property referenced to the arg {@code key}
+     * @param key the key referenced to the property
+     * @return property referenced to the arg {@code key}
      */
-    public static Object get(String key){
+    public static Object get(String key) {
         return props.get(key);
     }
 
     /**
-     * This operation is reserved or not, which is still in determination.
-     * @param key       the reference to the property
-     * @param value     the property
+     * get system language environment mark.
+     *
+     * @return system language
      */
-    public static void put(String key, Object value){
-        synchronized (props){
+    public static String getLanguage() {
+        return language;
+    }
+
+    /**
+     * get service invoke class name.
+     *
+     * @return Service Invoker class name
+     */
+    public static String getSrvInvoker() {
+        return srvInvoker;
+    }
+
+    /**
+     * This operation is reserved or not, which is still in determination.
+     *
+     * @param key   the reference to the property
+     * @param value the property
+     */
+    public static void put(String key, Object value) {
+        synchronized (props) {
             props.put(key, value);
         }
     }
 
 
-    static{
-        try{
+    static {
+        try {
             String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml", CharEncoding.UTF_8);
             Document doc = DocumentHelper.parseText(systemInfo);
+            // read invoke class
             Node invoker = doc.selectSingleNode("/system/service/invoker");
+            srvInvoker = invoker.getText();
+
+            Node lan = doc.selectSingleNode("/system/language");
+            language = lan.getText();
 
             if (null == invoker) {
                 throw new RuntimeException("Failed in parsing system configuration file.");
             }
-        } catch (IOException ioe){
-
-
-
-        } catch (DocumentException de){
-
+        } catch (IOException ioe) {
+            log.error("IOException occurred while reading system information.", ioe);
+        } catch (DocumentException de) {
+            log.error("DocumentException occurred while reading system information.", de);
         }
 
     }

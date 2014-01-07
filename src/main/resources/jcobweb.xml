@@ -6,7 +6,7 @@
         <!--<invoker>org.vintsie.jcobweb.invoke.instance.RemoteServiceInvoker</invoker>-->
     </service>
 
-    <!-- language environment -->
+    <!-- language environment ZH_CN, EN_US -->
     <language>ZH_CN</language>
 
 </system>
