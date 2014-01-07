@@ -17,6 +17,7 @@
 
 package org.vintsie.jcobweb.proxy;
 
+import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -109,7 +110,7 @@ public class ServiceFactory {
     static {
         try {
             //URL fileLoc = ServiceFactory.class.getResource("/jcobweb.xml");
-            String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml");
+            String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml", CharEncoding.UTF_8);
             Document doc = DocumentHelper.parseText(systemInfo);
             Node invoker = doc.selectSingleNode("/system/service/invoker");
 

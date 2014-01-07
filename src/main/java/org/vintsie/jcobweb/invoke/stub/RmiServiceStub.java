@@ -34,6 +34,24 @@ import java.util.HashMap;
  */
 public class RmiServiceStub extends AbtractServiceStub {
 
+    /**
+     * <p>This class implements the Serializable interface,
+     * but does not define a serialVersionUID field.  A
+     * change as simple as adding a reference to a .class
+     * object will add synthetic fields to the class, which
+     * will unfortunately change the implicit serialVersionUID
+     * (e.g., adding a reference to String.class will generate
+     * a static field class$java$lang$String). Also, different
+     * source code to bytecode compilers may use different naming
+     * conventions for synthetic variables generated for references
+     * to class objects or inner classes. To ensure interoperability
+     * of Serializable across versions, consider adding an
+     * explicit serialVersionUID.</p>
+     *
+     * <p>Checked by findbugs</p>
+     */
+    private final static long serialVersionUID = 9779392394L;
+
     private transient static Log log = LogFactory.getLog(RmiServiceStub.class);
 
     public RmiServiceStub() throws RemoteException{
@@ -73,7 +91,8 @@ public class RmiServiceStub extends AbtractServiceStub {
 
     @Override
     public Object remoteInvoke(HashMap<String, Object> params) throws RemoteException {
-
+        return null;
+      /*
         if(null == params || params.size() < 2){
             throw new RemoteException("Invalid request parameters. " +
                     "Service class name and method are needed at least.");
@@ -90,7 +109,7 @@ public class RmiServiceStub extends AbtractServiceStub {
             Object obj = ServiceFactory.getService(_interface_class);
             //Class.forName(_interface)
             Method method =
-                    _interface_class.getDeclaredMethod(_method, (Class<?>[])_args_clazz.toArray());
+                    _interface_class.getDeclaredMethod(_method, _args_clazz.toArray(Arrays.));
             rtn = method.invoke(obj, args.toArray());
 
         } catch (Exception e){
@@ -105,5 +124,6 @@ public class RmiServiceStub extends AbtractServiceStub {
             log.info(sb.toString());
         }
         return rtn;
+        */
     }
 }

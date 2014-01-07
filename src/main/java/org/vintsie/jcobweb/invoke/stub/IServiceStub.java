@@ -38,6 +38,7 @@ public interface IServiceStub extends Remote {
      *               include interface, method, args.
      * @return invoke result, just like regular function execution.
      * @throws RemoteException
+     * @deprecated
      */
     public Object remoteInvoke(HashMap<String, Object> params) throws RemoteException;
 
