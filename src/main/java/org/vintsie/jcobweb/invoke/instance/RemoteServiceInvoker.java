@@ -24,7 +24,7 @@ import java.rmi.registry.Registry;
 
 /**
  * Remote service invoker
- *
+ * <p/>
  * User: dev001
  * Date: 12/26/13
  * Time: 1:16 PM
@@ -36,7 +36,7 @@ public class RemoteServiceInvoker extends IServiceInvoker {
      * set the call type of service invoke to
      * <code>IServiceInvoker.callType_Remote</code>.
      */
-    public RemoteServiceInvoker(){
+    public RemoteServiceInvoker() {
         setCallType(callType_Remote);
     }
 
@@ -51,9 +51,9 @@ public class RemoteServiceInvoker extends IServiceInvoker {
         // local rmi server
         // TODO rmi server address should support configuration
         Registry registry = LocateRegistry.getRegistry("10.11.16.60", 9090);
-        IServiceStub remoteStub = (IServiceStub)registry.lookup(IServiceStub.class.getName());
+        IServiceStub remoteStub = (IServiceStub) registry.lookup(IServiceStub.class.getName());
 
-        if(log.isInfoEnabled()){
+        if (log.isInfoEnabled()) {
             log.info("Remote Service stub will return, wrapped by " + className);
         }
         return remoteStub;

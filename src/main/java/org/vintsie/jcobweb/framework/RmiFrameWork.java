@@ -41,24 +41,23 @@ public class RmiFrameWork {
      * Server can be started by running this main function. The
      * Rmi Server's port is reset to 9090, instead of the default
      * value 1099.</p>
-     *
+     * <p/>
      * <p>The Rmi Server Port should be set by the configuration
      * file. This is the continuing work rest.</p>
-     *
      *
      * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
-        if(log.isInfoEnabled()){
+        if (log.isInfoEnabled()) {
             log.info("Set System Service Invoke Factory:" +
                     ServiceFactory.getServiceInvoke().getClass().getName());
             log.info("Set System Service Invoke Type:" + ServiceFactory.getServiceInvokeType());
         }
         Registry registry = LocateRegistry.createRegistry(9090);
         registry.rebind(IServiceStub.class.getName(), new RmiServiceStub());
-        if(log.isInfoEnabled()){
+        if (log.isInfoEnabled()) {
             log.info("RMI server is ready.");
         }
 

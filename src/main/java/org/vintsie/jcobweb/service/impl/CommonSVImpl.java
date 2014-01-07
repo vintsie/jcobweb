@@ -16,7 +16,7 @@ public class CommonSVImpl implements CommonSV {
 
     @Override
     public long getCurrentDateTime() throws Exception {
-        if(log.isDebugEnabled()){
+        if (log.isDebugEnabled()) {
             log.debug("CommonSVImpl.class was called at " + System.currentTimeMillis());
         }
         return System.currentTimeMillis();
@@ -24,7 +24,7 @@ public class CommonSVImpl implements CommonSV {
 
     @Override
     public String sayHelloToWorld(String name, int times) throws Exception {
-        if(log.isInfoEnabled()){
+        if (log.isInfoEnabled()) {
             log.info(name + " said hello to world just now.");
         }
         return "thanks";

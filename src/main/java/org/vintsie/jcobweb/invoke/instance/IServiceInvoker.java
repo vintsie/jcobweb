@@ -25,7 +25,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * <p>The IServiceInvoker interface is designed to designate a class
  * as a <em>IServiceInvoker</em> object.</p>
- *
+ * <p/>
  * User: dev001
  * Date: 12/23/13
  * Time: 5:19 PM
@@ -42,40 +42,38 @@ public abstract class IServiceInvoker {
 
     /**
      * get service invoke type, local or remote
-     * @return  _L:local _R:remote
+     *
+     * @return _L:local _R:remote
      */
-    protected String getCallType(){
+    protected String getCallType() {
         return this.callType;
     }
 
     /**
      * set service call type, the param defined
      * must be _L or _R,
-     * @param callType  service call type
+     *
+     * @param callType service call type
      */
-    protected void setCallType(String callType){
-        if(StringUtils.equals(callType, callType_Local) ||
+    protected void setCallType(String callType) {
+        if (StringUtils.equals(callType, callType_Local) ||
                 StringUtils.equals(callType, callType_Remote)) {
             this.callType = callType;
-        }
-        else
+        } else
             throw new RuntimeException("unknown call type :" + callType);
     }
 
     /**
-     *
      * @param clazz Class.forName(className)
-     * @return  new instance of clazz
+     * @return new instance of clazz
      */
     public abstract Object instanceServiceObject(Class<?> clazz) throws Exception;
 
     /**
-     *
-     * @param className  class name
-     * @return  new instance of className
+     * @param className class name
+     * @return new instance of className
      */
     public abstract Object instanceServiceObject(String className) throws Exception;
-
 
 
 }

@@ -49,8 +49,8 @@ public class ServiceFactory {
     /**
      * get service instance
      *
-     * @param serviceInterface  service interface
-     * @param <T>   a proxy instance of interface implementation
+     * @param serviceInterface service interface
+     * @param <T>              a proxy instance of interface implementation
      * @return Type of the interface, a proxy instance of interface implementation
      */
     public static <T> T getService(Class<T> serviceInterface) throws Exception {
@@ -73,29 +73,30 @@ public class ServiceFactory {
      * Instance Service
      *
      * @param interfaceName interface class name
-     * @return  return the service instance
+     * @return return the service instance
      * @throws Exception
      */
-    public static Object getService(String interfaceName) throws Exception{
+    public static Object getService(String interfaceName) throws Exception {
         return getService(Class.forName(interfaceName));
     }
 
     /**
      * 暴露服务调用实现类
+     *
      * @return IServiceInvoker
      * @throws Exception
      */
-    public static IServiceInvoker getServiceInvoke() throws Exception{
+    public static IServiceInvoker getServiceInvoke() throws Exception {
         return I_SERVICE_INVOKE;
     }
 
     /**
      * return the call type of invoker
      *
-     * @return  call type of service invoker
+     * @return call type of service invoker
      * @throws Exception
      */
-    public static String getServiceInvokeType() throws Exception{
+    public static String getServiceInvokeType() throws Exception {
         return getServiceInvoke().callType;
     }
 

@@ -58,12 +58,12 @@ public class InvokeUtil {
      * @return arg1Type, arg2Type...
      * @deprecated this method can be replaced by {@code Arrays.toString(Object[] args)}
      */
-    public static String getMethodParamsTypes(Object[] args){
-        if(null == args || args.length < 1)
+    public static String getMethodParamsTypes(Object[] args) {
+        if (null == args || args.length < 1)
             return "void";
         StringBuilder sb = new StringBuilder();
-        for(Object arg : args){
-            if(sb.length() > 0)
+        for (Object arg : args) {
+            if (sb.length() > 0)
                 sb.append(", ");
             sb.append(arg.getClass().getName());
         }

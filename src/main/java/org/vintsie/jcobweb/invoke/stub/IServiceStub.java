@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 /**
  * Exposed to client for remote call.
- *
+ * <p/>
  * User: Vin Tsie
  * Date: 13-12-31
  * Time: 下午5:02
@@ -46,10 +46,10 @@ public interface IServiceStub extends Remote {
      * Client's proxy use this method to call remote object's
      * service.
      *
-     * @param ifc       interface class name
-     * @param method    method name
-     * @param argTypes  method arguments' type
-     * @param args      arguments
+     * @param ifc      interface class name
+     * @param method   method name
+     * @param argTypes method arguments' type
+     * @param args     arguments
      * @return invoke result, just like regular function execution.
      * @throws RemoteException
      */

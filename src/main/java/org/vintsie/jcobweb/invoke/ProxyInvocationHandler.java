@@ -41,7 +41,7 @@ public class ProxyInvocationHandler implements InvocationHandler {
     private Object instance;
     private Class iClass;
 
-    public ProxyInvocationHandler(Object instance, Class<?> iClass){
+    public ProxyInvocationHandler(Object instance, Class<?> iClass) {
         this.instance = instance;
         this.iClass = iClass;
     }
@@ -58,8 +58,8 @@ public class ProxyInvocationHandler implements InvocationHandler {
         if (IServiceInvoker.callType_Local.equals(ServiceFactory.getServiceInvokeType())) {
             if (log.isDebugEnabled()) {
                 log.debug(I18nFactory.getI18nInfo("invoke_information", method.getName(),
-                                Arrays.toString(method.getParameterTypes()),
-                                this.iClass.getName()));
+                        Arrays.toString(method.getParameterTypes()),
+                        this.iClass.getName()));
             }
             rtn = method.invoke(this.instance, args);
         }

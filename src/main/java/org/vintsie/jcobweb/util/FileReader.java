@@ -26,7 +26,7 @@ import java.net.URI;
 /**
  * <p>Read the original content of the file, without any extra operations,
  * such as trimming the blank content.</p>
- *
+ * <p/>
  * User: dev001
  * Date: 12/24/13
  * Time: 12:50 PM
@@ -38,14 +38,13 @@ public abstract class FileReader {
     /**
      * Get the original content of
      *
-     *
-     * @param uri       file location
-     * @param encoding  file encoding
-     * @return  file content String
-     * @exception java.io.IOException
+     * @param uri      file location
+     * @param encoding file encoding
+     * @return file content String
+     * @throws java.io.IOException
      */
     public static String readFile(URI uri, String encoding)
-            throws IOException{
+            throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(new File(uri)), encoding
         ));
@@ -62,12 +61,12 @@ public abstract class FileReader {
      * <p>
      * Read contents of a text file packaged in Jar. {@link java.io.IOException}
      * will be thrown out while error occurred in file reading.</p>
-     *
+     * <p/>
      * <p>
-     *     Param <code>contextPath</code> means the relative path. For Example,
-     *     reading jcobweb.xml, which is placed in the root directory of the
-     *     jar file, the contextPath parameter should be "/jcobweb.xml".
-     *
+     * Param <code>contextPath</code> means the relative path. For Example,
+     * reading jcobweb.xml, which is placed in the root directory of the
+     * jar file, the contextPath parameter should be "/jcobweb.xml".
+     * <p/>
      * </p>
      *
      * @param contextPath context path of file
@@ -89,10 +88,10 @@ public abstract class FileReader {
             log.error("Failed in reading file " + contextPath, ioe);
             throw ioe;
         }
-        try{
+        try {
             br.close();
             is.close();
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             log.error("Failed in closing the InputStream after reading.", ioe);
         }
         return sb.toString();
