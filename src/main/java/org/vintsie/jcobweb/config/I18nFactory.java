@@ -63,15 +63,21 @@ public class I18nFactory {
      * @throws java.io.IOException
      */
     public static Properties loadProperties(String cp, String charsetName) throws IOException {
-        Properties p = new Properties();
+        Properties properties = new Properties();
+        InputStreamReader isr = null;
         try {
-            p.load(new InputStreamReader(
+            isr = new InputStreamReader(
                     I18nFactory.class.getResourceAsStream(cp),
-                    charsetName));
+                    charsetName);
+            properties.load(isr);
         } catch (IOException ioe) {
             log.error("Failed in loading property file [" + cp + "].", ioe);
+        } finally {
+            if(null != isr){
+                isr.close();
+            }
         }
-        return p;
+        return properties;
     }
 
     /**

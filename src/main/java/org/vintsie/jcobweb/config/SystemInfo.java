@@ -107,14 +107,18 @@ public class SystemInfo {
             Document doc = DocumentHelper.parseText(systemInfo);
             // read invoke class
             Node invoker = doc.selectSingleNode("/system/service/invoker");
+            if (null == invoker) {
+                throw new RuntimeException("Failed in parsing system service invoker.");
+            }
             srvInvoker = invoker.getText();
 
             Node lan = doc.selectSingleNode("/system/language");
+            if (null == lan) {
+                throw new RuntimeException("Failed in parsing system language environment.");
+            }
             language = lan.getText();
 
-            if (null == invoker) {
-                throw new RuntimeException("Failed in parsing system configuration file.");
-            }
+
         } catch (IOException ioe) {
             log.error("IOException occurred while reading system information.", ioe);
         } catch (DocumentException de) {
