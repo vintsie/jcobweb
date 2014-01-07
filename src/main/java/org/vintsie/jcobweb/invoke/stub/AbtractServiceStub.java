@@ -35,7 +35,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      *
      * @throws java.rmi.RemoteException
      */
-    public AbtractServiceStub() throws RemoteException{
+    public AbtractServiceStub() throws RemoteException {
         super();
     }
 
@@ -44,42 +44,39 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      *
      * @param REST_in   RESTful param
      * @param REST_type define RESTful type, xml or json
-     *
      * @return RESTful return
      * @throws java.rmi.RemoteException
      */
-    public String remoteInvoke(String REST_in, String REST_type) throws RemoteException{
-        if(StringUtils.equals(REST_type, "xml")){
+    public String remoteInvoke(String REST_in, String REST_type) throws RemoteException {
+        if (StringUtils.equals(REST_type, "xml")) {
             return remoteInvokeXmlRestfully(REST_in);
         }
 
-        if(StringUtils.equals(REST_type, "json")){
+        if (StringUtils.equals(REST_type, "json")) {
             return remoteInvokeJsonRestfully(REST_in);
         }
-        return  StringUtils.EMPTY;
+        return StringUtils.EMPTY;
     }
 
     /**
      * call Xml-RESTful handler
      *
-     * @param xml   REST_in
-     * @return  RESTful result
-     *
+     * @param xml REST_in
+     * @return RESTful result
      * @throws java.rmi.RemoteException
      */
-    public String remoteInvokeXmlRestfully(String xml) throws RemoteException{
+    public String remoteInvokeXmlRestfully(String xml) throws RemoteException {
         return StringUtils.EMPTY;
     }
 
     /**
      * call Json-RESTful handler
      *
-     * @param jsonStr   REST_in
-     * @return  REST result
-     *
+     * @param jsonStr REST_in
+     * @return REST result
      * @throws java.rmi.RemoteException
      */
-    public String remoteInvokeJsonRestfully(String jsonStr) throws RemoteException{
+    public String remoteInvokeJsonRestfully(String jsonStr) throws RemoteException {
         return StringUtils.EMPTY;
     }
 

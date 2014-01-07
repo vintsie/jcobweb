@@ -27,17 +27,17 @@ public class LocalServiceInvoker extends IServiceInvoker {
 
     //private transient static Log log = LogFactory.getLog(LocalServiceInvoker.class);
 
-    public LocalServiceInvoker(){
+    public LocalServiceInvoker() {
         setCallType(callType_Local);
     }
 
     @Override
-    public Object instanceServiceObject(Class<?> clazz) throws Exception{
+    public Object instanceServiceObject(Class<?> clazz) throws Exception {
         return clazz.newInstance();
     }
 
     @Override
-    public Object instanceServiceObject(String className) throws Exception{
+    public Object instanceServiceObject(String className) throws Exception {
         return this.instanceServiceObject(Class.forName(className));
     }
 

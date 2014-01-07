@@ -46,29 +46,29 @@ public class RmiServiceStub extends AbtractServiceStub {
      * to class objects or inner classes. To ensure interoperability
      * of Serializable across versions, consider adding an
      * explicit serialVersionUID.</p>
-     *
+     * <p/>
      * <p>Checked by findbugs</p>
      */
     private final static long serialVersionUID = 9779392394L;
 
     private transient static Log log = LogFactory.getLog(RmiServiceStub.class);
 
-    public RmiServiceStub() throws RemoteException{
-         super();
+    public RmiServiceStub() throws RemoteException {
+        super();
     }
 
 
     @Override
     public Object remoteInvoke(String ifc, String method, Class<?>[] argTypes, Object[] args) throws RemoteException {
         Object rtn = null;
-        try{
+        try {
             Class<?> _interface_class = Class.forName(ifc);
             Object obj = ServiceFactory.getService(_interface_class);
             Method _m =
                     _interface_class.getDeclaredMethod(method, argTypes);
             rtn = _m.invoke(obj, args);
 
-            if(log.isInfoEnabled()){
+            if (log.isInfoEnabled()) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("\n").append("-------------Service Call Info---------\n");
                 sb.append("interface:").append(ifc).append("\n");
@@ -82,8 +82,8 @@ public class RmiServiceStub extends AbtractServiceStub {
                 log.info(sb.toString());
             }
 
-        } catch (Exception e){
-           log.error("---", e);
+        } catch (Exception e) {
+            log.error("---", e);
         }
         return rtn;
     }

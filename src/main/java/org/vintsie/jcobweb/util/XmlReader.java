@@ -31,9 +31,9 @@ public class XmlReader extends FileReader {
      * 读取XML文件的内容。首先使用基类{@link FileReader}的readFile
      * 方法获取最原始的文件内容，然后把对于XML没有意义的字符删掉。
      *
-     * @param uri       file location
-     * @param encoding  file encoding
-     * @return  formatted file content
+     * @param uri      file location
+     * @param encoding file encoding
+     * @return formatted file content
      * @throws java.io.IOException
      */
     public static String readXmlFile(URI uri, String encoding) throws IOException {
@@ -43,19 +43,20 @@ public class XmlReader extends FileReader {
     /**
      * <p>Read contents of a xml file packaged in Jar. {@link java.io.IOException}
      * will be thrown out while error occurred in file reading.</p>
-     *
+     * <p/>
      * <p>
-     *     Param <code>contextPath</code> means the relative path. For Example,
-     *     reading jcobweb.xml, which is placed in the root directory of the
-     *     jar file, the contextPath parameter should be "/jcobweb.xml".
-     *
+     * Param <code>contextPath</code> means the relative path. For Example,
+     * reading jcobweb.xml, which is placed in the root directory of the
+     * jar file, the contextPath parameter should be "/jcobweb.xml".
+     * <p/>
      * </p>
-     * @param contextPath   the file context path
-     * @param charsetName   charset encoding
-     * @return  the file content
+     *
+     * @param contextPath the file context path
+     * @param charsetName charset encoding
+     * @return the file content
      * @throws IOException
      */
-    public static String readJarXmlFile(String contextPath, String charsetName) throws IOException{
+    public static String readJarXmlFile(String contextPath, String charsetName) throws IOException {
         return readJarTextFile(contextPath, charsetName).replace("(?<=>)\\s+(?=<)", "");
     }
 

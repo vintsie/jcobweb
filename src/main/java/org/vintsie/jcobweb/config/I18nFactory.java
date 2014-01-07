@@ -42,9 +42,9 @@ public class I18nFactory {
     /**
      * get i18n information replacing the indexed param.
      *
-     * @param key       i18n message key
-     * @param params    indexed variable to replaced.
-     * @return  i18n message has been replaced
+     * @param key    i18n message key
+     * @param params indexed variable to replaced.
+     * @return i18n message has been replaced
      */
     public static String getI18nInfo(String key, String... params) {
         String i18n_template = getI18nInfo(key);
@@ -73,7 +73,7 @@ public class I18nFactory {
         } catch (IOException ioe) {
             log.error("Failed in loading property file [" + cp + "].", ioe);
         } finally {
-            if(null != isr){
+            if (null != isr) {
                 isr.close();
             }
         }
