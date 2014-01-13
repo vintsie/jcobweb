@@ -1,4 +1,3 @@
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -15,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.invoke.instance;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.vintsie.jcobweb.config.I18nFactory;
 
 /**
  * <p>The IServiceInvoker interface is designed to designate a class
@@ -45,9 +44,9 @@ public abstract class IServiceInvoker {
      *
      * @return _L:local _R:remote
      */
-    protected String getCallType() {
-        return this.callType;
-    }
+    //protected String getCallType() {
+    //    return this.callType;
+    //}
 
     /**
      * set service call type, the param defined
@@ -60,7 +59,8 @@ public abstract class IServiceInvoker {
                 StringUtils.equals(callType, callType_Remote)) {
             this.callType = callType;
         } else
-            throw new RuntimeException("unknown call type :" + callType);
+            throw new RuntimeException(
+                    I18nFactory.getI18nInfo("unknown_call_type", callType));
     }
 
     /**

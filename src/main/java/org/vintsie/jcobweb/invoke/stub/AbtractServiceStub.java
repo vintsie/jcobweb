@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.invoke.stub;
 
 import org.apache.commons.lang3.StringUtils;
@@ -66,7 +65,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      * @throws java.rmi.RemoteException
      */
     public String remoteInvokeXmlRestfully(String xml) throws RemoteException {
-        return StringUtils.EMPTY;
+        return xml;
     }
 
     /**
@@ -77,7 +76,7 @@ public abstract class AbtractServiceStub extends UnicastRemoteObject implements 
      * @throws java.rmi.RemoteException
      */
     public String remoteInvokeJsonRestfully(String jsonStr) throws RemoteException {
-        return StringUtils.EMPTY;
+        return jsonStr;
     }
 
 }

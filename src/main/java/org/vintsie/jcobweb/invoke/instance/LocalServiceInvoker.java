@@ -1,4 +1,3 @@
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -18,7 +17,6 @@
 package org.vintsie.jcobweb.invoke.instance;
 
 /**
- * Created with IntelliJ IDEA.
  * User: dev001
  * Date: 12/24/13
  * Time: 12:34 PM
