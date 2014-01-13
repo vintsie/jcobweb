@@ -94,10 +94,10 @@ public class I18nFactory {
                     loadProperties("/i18n/jcobweb_i18n_" + locale + ".properties", CharEncoding.UTF_8);
 
             if (log.isInfoEnabled()) {
-                log.info(i18n_dic.size() + " counts i18n message of " + locale + " loaded.");
+                log.info(i18n_dic.size() + " counts i18n message(s) of " + locale + " loaded.");
             }
         } catch (IOException ioe) {
-            log.error("Failed in reading i18n property file, the i18n dictionary will be empty.", ioe);
+            log.error("Failed in reading i18n property file, the i18n message dictionary will be empty.", ioe);
         }
     }
 }

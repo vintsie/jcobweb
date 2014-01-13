@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.framework;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.vintsie.jcobweb.config.I18nFactory;
 import org.vintsie.jcobweb.invoke.stub.IServiceStub;
 import org.vintsie.jcobweb.invoke.stub.RmiServiceStub;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
@@ -45,20 +45,19 @@ public class RmiFrameWork {
      * <p>The Rmi Server Port should be set by the configuration
      * file. This is the continuing work rest.</p>
      *
-     * @param args
+     * @param args  arguments
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
 
         if (log.isInfoEnabled()) {
-            log.info("Set System Service Invoke Factory:" +
-                    ServiceFactory.getServiceInvoke().getClass().getName());
-            log.info("Set System Service Invoke Type:" + ServiceFactory.getServiceInvokeType());
+            log.info(I18nFactory.getI18nInfo("set_sys_srv_ivk",
+                    ServiceFactory.getServiceInvoke().getClass().getName()));
         }
         Registry registry = LocateRegistry.createRegistry(9090);
         registry.rebind(IServiceStub.class.getName(), new RmiServiceStub());
         if (log.isInfoEnabled()) {
-            log.info("RMI server is ready.");
+            log.info(I18nFactory.getI18nInfo("rmi_server_is_ready"));
         }
 
     }
