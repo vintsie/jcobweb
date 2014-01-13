@@ -59,7 +59,7 @@ public class ProxyInvocationHandler implements InvocationHandler {
             if (log.isDebugEnabled()) {
                 log.debug(I18nFactory.getI18nInfo("invoke_information", method.getName(),
                         Arrays.toString(method.getParameterTypes()),
-                        this.iClass.getName()));
+                        this.iClass.getName(), Arrays.toString(args)));
             }
             rtn = method.invoke(this.instance, args);
         }
