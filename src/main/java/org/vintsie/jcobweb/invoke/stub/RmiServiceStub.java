@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.invoke.stub;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.vintsie.jcobweb.config.I18nFactory;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
 
 import java.lang.reflect.Method;
@@ -59,8 +59,9 @@ public class RmiServiceStub extends AbtractServiceStub {
 
 
     @Override
-    public Object remoteInvoke(String ifc, String method, Class<?>[] argTypes, Object[] args) throws RemoteException {
-        Object rtn = null;
+    public Object remoteInvoke(String ifc, String method, Class<?>[] argTypes, Object[] args)
+            throws RemoteException, Exception {
+        Object rtn;
         try {
             Class<?> _interface_class = Class.forName(ifc);
             Object obj = ServiceFactory.getService(_interface_class);
@@ -69,21 +70,14 @@ public class RmiServiceStub extends AbtractServiceStub {
             rtn = _m.invoke(obj, args);
 
             if (log.isInfoEnabled()) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("\n").append("-------------Service Call Info---------\n");
-                sb.append("interface:").append(ifc).append("\n");
-                sb.append("method:").append(method).append("\n");
-
-                sb.append("parameter types:").append(
-                        Arrays.toString(_m.getParameterTypes())).append("\n");
-
-                sb.append("args:").append(Arrays.toString(args)).append("\n");
-
-                log.info(sb.toString());
+                log.info(I18nFactory.getI18nInfo("log00001",
+                        ifc, method, Arrays.toString(_m.getParameterTypes()),
+                        Arrays.toString(args)));
             }
 
         } catch (Exception e) {
             log.error("---", e);
+            throw e;
         }
         return rtn;
     }

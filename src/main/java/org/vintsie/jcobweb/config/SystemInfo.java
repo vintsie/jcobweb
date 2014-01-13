@@ -108,21 +108,22 @@ public class SystemInfo {
             // read invoke class
             Node invoker = doc.selectSingleNode("/system/service/invoker");
             if (null == invoker) {
-                throw new RuntimeException("Failed in parsing system service invoker.");
+                throw new RuntimeException(
+                        I18nFactory.getI18nInfo("failed_in_parsing_sys_srv_invoker"));
             }
             srvInvoker = invoker.getText();
 
             Node lan = doc.selectSingleNode("/system/language");
             if (null == lan) {
-                throw new RuntimeException("Failed in parsing system language environment.");
+                throw new RuntimeException(I18nFactory.getI18nInfo("failed_in_parsing_sys_lan"));
             }
             language = lan.getText();
 
 
         } catch (IOException ioe) {
-            log.error("IOException occurred while reading system information.", ioe);
+            log.error(I18nFactory.getI18nInfo("reading_sys_info_error_io"), ioe);
         } catch (DocumentException de) {
-            log.error("DocumentException occurred while reading system information.", de);
+            log.error(I18nFactory.getI18nInfo("reading_sys_info_error_doc"), de);
         }
 
     }

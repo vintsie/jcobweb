@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.vintsie.jcobweb.invoke.instance;
 
 import org.vintsie.jcobweb.invoke.stub.IServiceStub;
@@ -30,8 +29,6 @@ import java.rmi.registry.Registry;
  * Time: 1:16 PM
  */
 public class RemoteServiceInvoker extends IServiceInvoker {
-
-
     /**
      * set the call type of service invoke to
      * <code>IServiceInvoker.callType_Remote</code>.

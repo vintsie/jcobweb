@@ -28,7 +28,6 @@ import org.vintsie.jcobweb.invoke.instance.LocalServiceInvoker;
 import java.lang.reflect.Proxy;
 
 /**
- * Created with IntelliJ IDEA.
  * User: dev001
  * Date: 12/23/13
  * Time: 3:14 PM
