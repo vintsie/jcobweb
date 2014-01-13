@@ -9,7 +9,7 @@
   3. 自由编码。服务端的代码可以自由编写，只要满足特性2提供了服务管理工厂即可。
 
 ## 二、配置使用手册
-[点击查看使用手册](# "#")
+[点击查看使用手册](https://github.com/vintsie/jcobweb/blob/master/USER%20MANUAL.md "#")
 
 ## 三、功能轨迹
 * 20140107 增加国际化支持。Add i18n support.
