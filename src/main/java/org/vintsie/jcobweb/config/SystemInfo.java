@@ -19,14 +19,21 @@ package org.vintsie.jcobweb.config;
 import org.apache.commons.lang3.CharEncoding;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Node;
+
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.filter.Filters;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.vintsie.jcobweb.util.XmlReader;
+import org.w3c.dom.Node;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Initialize system information while process starts.
@@ -103,27 +110,35 @@ public class SystemInfo {
 
     static {
         try {
-            String systemInfo = XmlReader.readJarXmlFile("/jcobweb.xml", CharEncoding.UTF_8);
-            Document doc = DocumentHelper.parseText(systemInfo);
-            // read invoke class
-            Node invoker = doc.selectSingleNode("/system/service/invoker");
+
+            SAXBuilder saxBuilder = new SAXBuilder();
+            Document doc = saxBuilder.build(SystemInfo.class.getResourceAsStream("/jcobweb.xml"));
+
+            XPathFactory xPathFactory = XPathFactory.instance();
+
+            XPathExpression<Element> xp = xPathFactory.compile("/system/service/invoker", Filters.element());
+            Element invoker =  xp.evaluateFirst(doc);
+            //List<Attribute> list = xp.evaluate(doc);
+            //log.error(list);
+
             if (null == invoker) {
                 throw new RuntimeException(
                         I18nFactory.getI18nInfo("failed_in_parsing_sys_srv_invoker"));
             }
-            srvInvoker = invoker.getText();
+            srvInvoker = invoker.getValue();
 
-            Node lan = doc.selectSingleNode("/system/language");
+            xp = xPathFactory.compile("/system/language", Filters.element());
+            Element lan = xp.evaluateFirst(doc);
             if (null == lan) {
                 throw new RuntimeException(I18nFactory.getI18nInfo("failed_in_parsing_sys_lan"));
             }
-            language = lan.getText();
+            language = lan.getValue();
 
 
         } catch (IOException ioe) {
             log.error(I18nFactory.getI18nInfo("reading_sys_info_error_io"), ioe);
-        } catch (DocumentException de) {
-            log.error(I18nFactory.getI18nInfo("reading_sys_info_error_doc"), de);
+        } catch (JDOMException jdome) {
+            log.error(I18nFactory.getI18nInfo("reading_sys_info_error_doc"), jdome);
         }
 
     }
