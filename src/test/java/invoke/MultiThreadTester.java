@@ -12,22 +12,5 @@ import java.util.concurrent.Executors;
  */
 public class MultiThreadTester {
 
-    /**
-     * Multithreading stress test.
-     *
-     * @throws Exception
-     */
-    @Test
-    public void multiTestServiceCall() throws Exception {
-        ExecutorService es = Executors.newFixedThreadPool(20, Executors.defaultThreadFactory());
-        int i = 0;
-        while (i < 2) {
-            for (int j = 0; j < 20; j++) {
-                es.execute(new RunnableCaller());
-            }
-            Thread.sleep(5000);
-            i++;
-        }
-        es.shutdown();
-    }
+
 }
