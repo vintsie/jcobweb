@@ -30,7 +30,6 @@ public class TestServiceFactory {
         log.info(commonSV.sayHelloToWorld("Vin Tsie", 5));
     }
 
-    @Test
     public void testRmiCall() throws Exception{
         Registry registry = LocateRegistry.getRegistry(9090);
         Remote remote = registry.lookup(IServiceStub.class.getName());
